@@ -1,0 +1,153 @@
+
+:root {
+    --light-color: white;
+    --dark-color: black;
+    --button-color: var(--dark-color);
+    --button-text-color: var(--light-color);
+    --button-hover-color: rgb(60,60,60);
+    --button-disabled-color: rgb(30,30,30);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --light-color: rgb(25,25,25);
+        --dark-color: rgb(220,220,220);
+        --button-hover-color: rgb(200,200,200);
+        --button-disabled-color: rgb(220,220,220);
+    }
+}
+body {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+a {
+    color: var(--dark-color);
+}
+
+.App {
+
+    font-family: sans-serif;
+    -webkit-font-feature-settings: "liga", "calt", "swsh";
+    font-size: 18pt;
+    line-height: 1.5em;
+    width: 100%;
+    display: grid;
+    grid-template-columns: calc(calc(100% - 900px) / 2) 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr calc(calc(100% - 900px) / 2);
+    grid-template-areas: ". header header header header header header header header header header header header ."
+    ". content content content content content content content content content content content content ."
+    ". footer footer footer footer footer footer footer footer footer footer footer footer .";
+    grid-template-rows: auto auto auto;
+    font-variant-numeric: oldstyle-nums;
+}
+
+@media only screen and (max-device-width: 900px) {
+    .App {
+        grid-template-columns: 20px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 20px;
+    }
+}
+
+
+
+.App header {
+    text-align: center;
+    grid-area: header;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "logo title title title";
+}
+
+.App header .logo {
+    grid-area: logo;
+}
+
+.App header h1 {
+    grid-area: title;
+}
+
+.App header .logo svg {
+    height: 60px;
+}
+
+.App footer {
+    grid-area: footer;
+}
+
+.App main {
+    grid-area: content;
+}
+
+.App main section.preamble {
+    font-size: 0.7em;
+    font-style: italic;
+    line-height: 1.5em;
+    margin-bottom: 60px;
+}
+
+/* .App header h1.title {
+    margin-top: 150px;
+    font-size: 1em;
+    font-weight: bold;
+    font-style: italic;
+}
+
+@media only screen and (max-width: 500px) {
+    .App header h1.title{
+        font-size: 3em;
+    }
+}
+
+.App .date {
+    font-size: 1.5em;
+}
+
+.App .fleuron {
+    margin-top: 100px;
+    font-size: 3em;
+    margin-bottom: 50px;
+}
+
+.App main section input,
+.App main section textarea {
+    font-style: italic;
+    font-family: inherit;
+    font-size: 100%;
+}
+
+.App main section button {
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 100%;
+    padding: 20px;
+    font-weight: 600;
+    background-color: black;
+    color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 6px;
+}
+
+.App main section button:hover {
+    background-color: darkgrey;
+    border-color: darkgrey;
+}
+
+.App main section button:active {
+    background-color: white;
+    color: black;
+    border-color: black;
+}
+
+section h2 {
+    margin-top: 3em;
+    font-weight: 500;
+    padding-bottom: 0.6em;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: darkgrey;
+}*/
