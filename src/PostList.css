@@ -39,6 +39,10 @@
     margin-bottom: 1.5em;
 }
 
+.posts .blogEntry a {
+    text-underline-offset: 5px;
+}
+
 .posts ul.pagination {
     padding-left: 0px;
 }
