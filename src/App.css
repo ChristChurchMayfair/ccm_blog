@@ -69,6 +69,7 @@ a {
 
 .App header .logo svg {
     height: 60px;
+    fill: var(--dark-color);
 }
 
 .App footer {
