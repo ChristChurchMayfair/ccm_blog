@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import moment from 'moment';
 import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
@@ -19,6 +19,7 @@ export type Post = {
 
 var PostList = (props: { blogs: Post[], postsPerPage: number }) => {
     const [offset, setOffset] = useState(0);
+    const [readStates, setReadStates] = useState<{ [slug: string]: string }>({});
 
     let pageCount = props.blogs.length / props.postsPerPage;
 
@@ -28,15 +29,35 @@ var PostList = (props: { blogs: Post[], postsPerPage: number }) => {
         setOffset(offset)
     };
 
+    useEffect(() => {
+        let readStates = props.blogs.reduce(function (map: { [slug: string]: string }, blog: Post) {
+            if (blog.slug && blog.slug != null) {
+                let readState = localStorage.getItem(blog.slug)
+                if (readState) {
+                    map[blog.slug] = readState
+                } else {
+                    map[blog.slug] = "unread";
+                }
+            }
+            return map
+        }, {})
+        console.log(readStates)
+        setReadStates(readStates)
+    }, [props.blogs])
+
     return (
         <div className="posts">
-            {props.blogs.slice(offset, offset + props.postsPerPage).map((item) => (
-                <div key={item.title} className="blogEntry">
+            {props.blogs.slice(offset, offset + props.postsPerPage).map((item) => {
+                var classNames = "blogEntry"
+                if (item.slug) {
+                    classNames = classNames + " " + readStates[item.slug]
+                }
+                return (<div key={item.title} className={classNames}>
                     <Link to={"/posts/" + item.slug}>{item.title}</Link>
                     <div className="date">{moment(item.createdAt).format('LL')}</div>
                     {/* <div><BlockContent blocks={item.text} /></div> */}
-                </div>
-            ))}
+                </div>)
+            })}
             <ReactPaginate
                 previousLabel={'prev'}
                 nextLabel={'next'}
@@ -63,6 +84,19 @@ let serializers = {
 }
 
 export var PostView = (props: { blog: Post | undefined }) => {
+
+    let markAsReadAfterMilliseconds = 2000;
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (props.blog && props.blog.slug) {
+                console.log("Marking " + props.blog.slug + " as read");
+                localStorage.setItem(props.blog.slug, "read")
+            }
+        }, markAsReadAfterMilliseconds);
+    });
+
+
     if (props.blog) {
         return (<div className="post">
             <h2 className="title">{props.blog.title}</h2>
