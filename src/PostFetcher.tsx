@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import client from './Client'
 import PostList, { Post, PostView } from "./PostList";
-import { RouteComponentProps, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function SanityBlogEntryToPost(obj: any): Post {
   return {
@@ -36,7 +36,7 @@ export var GetPostBySlug = () => {
       }
     };
     fetchBlogEntries();
-  },[]);
+  },[slug]);
 
   if (isLoading) {
     return (<div>Loading</div>)

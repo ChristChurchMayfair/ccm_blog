@@ -5,10 +5,9 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  RouteComponentProps
+  Link
 } from "react-router-dom";
-import { Hideable } from './Hideable';
+//import { Hideable } from './Hideable';
 
 const App: React.FC = () => {
   return (
