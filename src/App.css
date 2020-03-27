@@ -1,21 +1,87 @@
+/* styling variables */
 
 :root {
     --light-color: white;
-    --dark-color: black;
+    --mid-color: white;
+    --dark-color: #243246;
     --button-color: var(--dark-color);
     --button-text-color: var(--light-color);
-    --button-hover-color: rgb(60,60,60);
-    --button-disabled-color: rgb(30,30,30);
+    --button-hover-color: #3e577a;
+    --button-disabled-color: #243246a8;
+    /* padding */
+    --padding-main: 1em;
 }
+
+/* typefaces */
+
+font-face {
+    font-family: 'Klinic Slab';
+    font-style: normal;
+    font-weight: normal;
+    src: url(/fonts/KlinicSlabMedium.otf);
+  }
+  
+  @font-face {
+    font-family: 'Klinic Slab';
+    font-style: italic;
+    font-weight: normal;
+    src: url(/fonts/KlinicSlabMediumIt.otf);
+  }
+  
+  @font-face {
+    font-family: 'Klinic Slab';
+    font-style: normal;
+    font-weight: bold;
+    src: url(/fonts/KlinicSlabBold.otf);
+  }
+  
+  @font-face {
+    font-family: 'Klinic Slab';
+    font-style: italic;
+    font-weight: bold;
+    src: url(/fonts/KlinicSlabBoldIt.otf);
+  }
+  
+  @font-face {
+    font-family: 'Klinic Slab';
+    font-style: normal;
+    font-weight: 300;
+    src: url(/fonts/KlinicSlabBook.otf);
+  }
+  
+  @font-face {
+    font-family: 'Klinic Slab';
+    font-style: italic;
+    font-weight: 300;
+    src: url(/fonts/KlinicSlabBookIt.otf);
+  }
+  
+  @font-face {
+    font-family: 'Klinic Slab';
+    font-style: normal;
+    font-weight: 200;
+    src: url(/fonts/KlinicSlabLight.otf);
+  }
+  
+  @font-face {
+    font-family: 'Klinic Slab';
+    font-style: italic;
+    font-weight: 200;
+    src: url(/fonts/KlinicSlabLightIt.otf);
+  }
+
+/* main page styling */
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --light-color: rgb(25,25,25);
-        --dark-color: rgb(220,220,220);
+        --light-color:  #243246;
+        --mid-color: #344256;
+        --dark-color:white;
         --button-hover-color: rgb(200,200,200);
         --button-disabled-color: rgb(220,220,220);
     }
 }
+
 body {
     background-color: var(--light-color);
     color: var(--dark-color);
@@ -26,45 +92,32 @@ a {
 }
 
 .App {
-
-    font-family: sans-serif;
-    -webkit-font-feature-settings: "liga", "calt", "swsh";
-    font-size: 18pt;
-    line-height: 1.5em;
+    font-family: 'Klinic Slab', sans-serif;
+    font-size: 1.4em;
+    line-height: 1.2em;
     width: 100%;
-    display: grid;
-    grid-template-columns: calc(calc(100% - 900px) / 2) 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr calc(calc(100% - 900px) / 2);
-    grid-template-areas: ". header header header header header header header header header header header header ."
-    ". content content content content content content content content content content content content ."
-    ". footer footer footer footer footer footer footer footer footer footer footer footer .";
-    grid-template-rows: auto auto auto;
     font-variant-numeric: oldstyle-nums;
+    display: grid;
+    grid-template-areas: "intro main";
+    grid-template-columns: 33vw auto;
+    grid-template-rows: 1fr;
 }
 
-@media only screen and (max-device-width: 900px) {
+@media only screen and (max-width: 798px) {
     .App {
-        grid-template-columns: 20px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 20px;
+        display: grid;
+        grid-template-areas: "intro"
+        "main";
+        grid-template-columns: 1fr;
     }
 }
 
+/* intro section */
 
-
-.App header {
-    text-align: center;
-    grid-area: header;
-    padding-bottom: 30px;
-    padding-top: 30px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-areas: "logo title title title";
-}
-
-.App header .logo {
-    grid-area: logo;
-}
-
-.App header h1 {
-    grid-area: title;
+.App .introSection {
+    background-color: var(--mid-color);
+    grid-area: intro;
+    padding: var(--padding-main);
 }
 
 .App header .logo svg {
@@ -72,83 +125,68 @@ a {
     fill: var(--dark-color);
 }
 
-.App footer {
-    grid-area: footer;
+.App .introSection h1 {
+    font-size: 1.2em;
+    padding: calc(var(--padding-main) / 2) 0;
 }
 
-.App main {
-    grid-area: content;
-}
-
-.App main section.preamble {
-    font-size: 0.7em;
-    font-style: italic;
-    line-height: 1.5em;
-    margin-bottom: 60px;
-}
-
-/* .App header h1.title {
-    margin-top: 150px;
+.App .introSection h2 {
     font-size: 1em;
-    font-weight: bold;
-    font-style: italic;
+    line-height: 1.25em;
+    font-weight: 500;
 }
 
-@media only screen and (max-width: 500px) {
-    .App header h1.title{
-        font-size: 3em;
+.App .introCopy {
+    width: 90%;
+}
+
+@media only screen and (max-width: 768px) {
+    .App .introSection h1 {
+        font-size: 1.2em;
+    }
+    .App .introSection div {
+        font-size: 0.8em;
+    }
+    .App .introCopy {
+        width: 100%;
+    }
+
+    /* hide the long intro on mobile */
+    .App .introCopy p {
+        display:none;
+    }
+    .App .introCopy p:first-child {
+        display:block;
     }
 }
 
-.App .date {
-    font-size: 1.5em;
-}
+/* posts */
 
-.App .fleuron {
+.App main {
+    grid-area: main;
+    padding: var(--padding-main);
     margin-top: 100px;
-    font-size: 3em;
-    margin-bottom: 50px;
 }
 
-.App main section input,
-.App main section textarea {
-    font-style: italic;
-    font-family: inherit;
-    font-size: 100%;
+@media only screen and (max-width: 768px) {
+    .App main {
+        margin-top: 10px;
+    }   
 }
 
-.App main section button {
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 100%;
-    padding: 20px;
-    font-weight: 600;
-    background-color: black;
-    color: white;
-    border-style: solid;
-    border-width: 1px;
-    border-color: black;
-    border-radius: 6px;
+.post h2 {
+    margin: 0;
+    padding: 0 0 0.2em 0;
+    line-height: 1.2em;
+    max-width: 90%;
 }
 
-.App main section button:hover {
-    background-color: darkgrey;
-    border-color: darkgrey;
+.post .text {
+    font-weight: 400;
 }
 
-.App main section button:active {
-    background-color: white;
-    color: black;
-    border-color: black;
-}
+/* footer */
 
-section h2 {
-    margin-top: 3em;
-    font-weight: 500;
-    padding-bottom: 0.6em;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-bottom-color: darkgrey;
-}*/
+.App footer {
+    grid-area: footer;
+}

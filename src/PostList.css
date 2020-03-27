@@ -12,9 +12,6 @@
     padding-left: 10px;
     padding-right: 10px;
 
-    border-style: solid;
-    border-color: black;
-    border-width: 1px;
     cursor: pointer;
     border-radius: 5px;
     background-color: var(--button-color);
@@ -39,7 +36,7 @@
 }
 
 .posts .blogEntry {
-    margin-bottom: 20px;
+    margin-bottom: 1.5em;
 }
 
 .posts ul.pagination {
