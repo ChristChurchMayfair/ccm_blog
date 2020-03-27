@@ -2,14 +2,30 @@
 
 :root {
     --light-color: white;
-    --mid-color: white;
+    --mid-color: #344256;
     --dark-color: #243246;
+    --header-color: var(--light-color);
+    --main-background-color: var(--light-color);
+    --main-text-color: var(--dark-color);
+    --side-background-color: var(--dark-color);
+    --side-text-color: var(--light-color);
     --button-color: var(--dark-color);
     --button-text-color: var(--light-color);
     --button-hover-color: #3e577a;
     --button-disabled-color: #243246a8;
     /* padding */
     --padding-main: 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --main-background-color: var(--dark-color);
+        --main-text-color: var(--light-color);
+        --side-background-color: var(--mid-color);
+        --side-text-color: var(--light-color);
+        --button-hover-color: rgb(200,200,200);
+        --button-disabled-color: rgb(220,220,220);
+    }
 }
 
 /* typefaces */
@@ -72,23 +88,15 @@ font-face {
 
 /* main page styling */
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --light-color:  #243246;
-        --mid-color: #344256;
-        --dark-color:white;
-        --button-hover-color: rgb(200,200,200);
-        --button-disabled-color: rgb(220,220,220);
-    }
-}
+
 
 body {
-    background-color: var(--light-color);
-    color: var(--dark-color);
+    background-color: var(--main-background-color);
+    color: var(--main-text-color);
 }
 
 a {
-    color: var(--dark-color);
+    color: var(--main-text-color);
 }
 
 .App {
@@ -96,11 +104,12 @@ a {
     font-size: 1.4em;
     line-height: 1.2em;
     width: 100%;
+    height: 100%;
     font-variant-numeric: oldstyle-nums;
     display: grid;
     grid-template-areas: "intro main";
-    grid-template-columns: 33vw auto;
-    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: minmax(100vh, auto);
 }
 
 @media only screen and (max-width: 798px) {
@@ -109,20 +118,23 @@ a {
         grid-template-areas: "intro"
         "main";
         grid-template-columns: 1fr;
+        grid-template-rows: auto;
     }
 }
 
 /* intro section */
 
 .App .introSection {
-    background-color: var(--mid-color);
+    background-color: var(--side-background-color);
+    color: var(--side-text-color);
     grid-area: intro;
     padding: var(--padding-main);
+    box-sizing: border-box;
 }
 
 .App header .logo svg {
     height: 60px;
-    fill: var(--dark-color);
+    fill: var(--header-color);
 }
 
 .App .introSection h1 {
