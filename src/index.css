@@ -1,13 +1,113 @@
+/* styling variables */
+
+:root {
+  --light-color: white;
+  --bright-color: #4a7fc5;
+  --mid-color: #344256;
+  --dark-color: #243246;
+  --header-color: var(--light-color);
+  --main-background-color: var(--light-color);
+  --main-text-color: var(--dark-color);
+  --side-background-color: var(--dark-color);
+  --side-text-color: var(--light-color);
+  --button-color: var(--dark-color);
+  --button-active-color: var(--bright-color);
+  --button-text-color: var(--light-color);
+  --button-hover-color: #3e577a;
+  --button-disabled-color: #243246a8;
+
+  /* padding */
+  --padding-main: 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-background-color: var(--dark-color);
+    --main-text-color: var(--light-color);
+    --side-background-color: var(--mid-color);
+    --side-text-color: var(--light-color);
+    --button-hover-color: rgb(200, 200, 200);
+    --button-disabled-color: rgb(220, 220, 220);
+  }
+}
+
+/* typefaces */
+
+font-face {
+  font-family: "Klinic Slab";
+  font-style: normal;
+  font-weight: normal;
+  src: url(/fonts/KlinicSlabMedium.otf);
+}
+
+@font-face {
+  font-family: "Klinic Slab";
+  font-style: italic;
+  font-weight: normal;
+  src: url(/fonts/KlinicSlabMediumIt.otf);
+}
+
+@font-face {
+  font-family: "Klinic Slab";
+  font-style: normal;
+  font-weight: bold;
+  src: url(/fonts/KlinicSlabBold.otf);
+}
+
+@font-face {
+  font-family: "Klinic Slab";
+  font-style: italic;
+  font-weight: bold;
+  src: url(/fonts/KlinicSlabBoldIt.otf);
+}
+
+@font-face {
+  font-family: "Klinic Slab";
+  font-style: normal;
+  font-weight: 300;
+  src: url(/fonts/KlinicSlabBook.otf);
+}
+
+@font-face {
+  font-family: "Klinic Slab";
+  font-style: italic;
+  font-weight: 300;
+  src: url(/fonts/KlinicSlabBookIt.otf);
+}
+
+@font-face {
+  font-family: "Klinic Slab";
+  font-style: normal;
+  font-weight: 200;
+  src: url(/fonts/KlinicSlabLight.otf);
+}
+
+@font-face {
+  font-family: "Klinic Slab";
+  font-style: italic;
+  font-weight: 200;
+  src: url(/fonts/KlinicSlabLightIt.otf);
+}
+
 body {
+  background-color: var(--main-background-color);
+  color: var(--main-text-color);
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Klinic Slab", sans-serif;
+  font-variant-numeric: oldstyle-nums;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  font-size: 1.4em;
+  line-height: 1.2em;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+a {
+  color: var(--main-text-color);
 }

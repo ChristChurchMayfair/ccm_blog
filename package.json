@@ -5,6 +5,7 @@
   "dependencies": {
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/client": "^1.149.2",
+    "@types/classnames": "^2.2.10",
     "@types/jest": "^24.0.21",
     "@types/node": "^12.12.5",
     "@types/react": "^16.9.11",
@@ -12,7 +13,9 @@
     "@types/react-paginate": "^6.2.1",
     "@types/universal-cookie": "^2.2.0",
     "axios": "^0.19.2",
+    "classnames": "^2.2.6",
     "moment": "^2.24.0",
+    "node-sass": "^4.13.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-paginate": "^6.3.2",

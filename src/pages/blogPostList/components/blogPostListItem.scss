@@ -1,0 +1,13 @@
+.blog-post-list-item {
+  margin-bottom: 1.5em;
+
+  &__date {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 0.6em;
+  }
+
+  &__title-link {
+    text-underline-offset: 5px;
+  }
+}

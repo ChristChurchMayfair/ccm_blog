@@ -1,0 +1,52 @@
+.blog-post-list__pagination {
+  display: inline-block;
+  list-style-type: none;
+  padding-left: 0px;
+
+  li {
+    display: inline-block;
+    list-style-type: none;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: var(--button-color);
+
+    &.active {
+      background-color: var(--button-active-color);
+
+      .active-link {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+    }
+
+    &.previous {
+      margin-left: 0;
+    }
+
+    &.disabled {
+      color: darkgray;
+      background-color: var(--button-disabled-color);
+      border-color: var(--button-disabled-color);
+      cursor: default;
+
+      &:hover {
+        background-color: var(--button-disabled-color);
+      }
+    }
+
+    &:hover {
+      background-color: var(--button-hover-color);
+    }
+
+    a {
+      color: var(--button-text-color);
+      text-decoration-color: var(--button-text-color);
+    }
+  }
+}
