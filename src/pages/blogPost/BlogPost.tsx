@@ -2,8 +2,10 @@ import React, { useLayoutEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import useFetchBlogPosts from "../../commonComponents/hooks/useFetchBlogPosts";
+import Loading from "../../commonComponents/loading/Loading";
 
 import "./blogPost.scss";
+import moment from "moment";
 
 const BlockContent = require("@sanity/block-content-to-react");
 
@@ -28,13 +30,19 @@ const BlogPost: React.FC<{}> = () => {
     );
   }
 
-  // TODO: create loading component
   if (isLoading) {
-    return <>Loading...</>;
+    return <Loading />;
   }
 
   if (blogPosts.length === 0) {
-    return <div>No blog post!</div>;
+    return (
+      <div className="blog-post">
+        Sorry! Something went wrong and we weren't able to load this blog post!
+        <div className="blog-post__back-to-posts">
+          <Link to={"/"}>&larr; Back to all posts</Link>
+        </div>
+      </div>
+    );
   }
 
   if (blogPosts.length > 1) {
@@ -46,10 +54,13 @@ const BlogPost: React.FC<{}> = () => {
 
   return (
     <>
-      {blogPosts.map(({ title, author, text }) => (
+      {blogPosts.map(({ title, author, text, createdAt }) => (
         <div key={title} className="blog-post">
+          <div className="blog-post__date">
+            {moment(createdAt).format("dddd D MMMM YYYY")}
+          </div>
           <h2 className="blog-post__title">{title}</h2>
-          <div>Posted by: {author}</div>
+          <div className="blog-post__author">Posted by {author}</div>
           <div className="blog-post__text">
             <BlockContent blocks={text} serializers={{ hardBreak: false }} />
           </div>

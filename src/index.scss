@@ -1,10 +1,17 @@
+@function hexToRGB($hex) {
+  @return red($hex), green($hex), blue($hex);
+}
+
 /* styling variables */
 
 :root {
   --light-color: white;
   --bright-color: #4a7fc5;
+  --bright-color-rgb: #{hexToRGB(#4a7fc5)};
   --mid-color: #344256;
+  --mid-color-rgb: #{hexToRGB(#344256)};
   --dark-color: #243246;
+  --dark-color-rgb: #{hexToRGB(#243246)};
   --header-color: var(--light-color);
   --main-background-color: var(--light-color);
   --main-text-color: var(--dark-color);

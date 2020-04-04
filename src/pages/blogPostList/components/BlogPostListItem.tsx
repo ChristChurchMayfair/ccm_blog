@@ -14,17 +14,34 @@ interface BlogPostListItemProps {
 }
 
 const BlogPostListItem: React.FC<BlogPostListItemProps> = ({
-  blogPost: { title, slug, createdAt },
-  readState
+  blogPost: { title, slug, createdAt, author },
+  readState,
 }) => (
-  <div className={classnames("blog-post-list-item", readState)}>
-    <Link to={"/posts/" + slug} className="blog-post-list-item__title-link">
-      {title}
-    </Link>
-    <div className="blog-post-list-item__date">
-      {moment(createdAt).format("LL")}
+  <Link to={"/posts/" + slug} className="blog-post-list-item">
+    <div className="blog-post-list-item__container">
+      <div className="blog-post-list-item__date">
+        <div className="blog-post-list-item__date__container">
+          <span className="blog-post-list-item__date__weekday">
+            {moment(createdAt).format("dddd")}
+          </span>
+          <br />
+          <span className="blog-post-list-item__date__calendar-date">
+            {moment(createdAt).format("D MMM")}
+          </span>
+        </div>
+      </div>
+      <div className={classnames("blog-post-list-item__content", readState)}>
+        <span className="blog-post-list-item__content__title">{title}</span>
+        <br />
+        <span className="blog-post-list-item__content__author">{author}</span>
+        {createdAt.toDateString() === new Date().toDateString() && (
+          <div className="blog-post-list-item__content__new-today-badge">
+            <span>New today!</span>
+          </div>
+        )}
+      </div>
     </div>
-  </div>
+  </Link>
 );
 
 export default BlogPostListItem;
