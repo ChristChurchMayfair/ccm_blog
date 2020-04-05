@@ -33,6 +33,9 @@ const BlogPostListItem: React.FC<BlogPostListItemProps> = ({
       <div className={classnames("blog-post-list-item__content", readState)}>
         <span className="blog-post-list-item__content__title">{title}</span>
         <br />
+        <span className="blog-post-list-item__content__mobile-date">
+          {moment(createdAt).format("D MMMM")} &middot;{" "}
+        </span>
         <span className="blog-post-list-item__content__author">{author}</span>
         {createdAt.toDateString() === new Date().toDateString() && (
           <div className="blog-post-list-item__content__new-today-badge">
