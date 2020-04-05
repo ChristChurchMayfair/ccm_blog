@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 
 import useFetchBlogPosts from "../../commonComponents/hooks/useFetchBlogPosts";
+import Loading from "../../commonComponents/loading/Loading";
 import BlogPost from "../../types/BlogPost";
 import ReadStates, { ReadState } from "../../types/ReadStates";
 
@@ -11,7 +12,7 @@ import "./blogPostList.scss";
 import {
   PAGE_SIZE,
   MARGIN_PAGES_DISPLAYED,
-  PAGE_RANGE_DISPLAYED
+  PAGE_RANGE_DISPLAYED,
 } from "../../const/pagination";
 
 const BlogPostList: React.FC<{}> = () => {
@@ -27,7 +28,7 @@ const BlogPostList: React.FC<{}> = () => {
               ...map,
               [slug]: (localStorage.getItem(slug)
                 ? "read"
-                : "unread") as ReadState
+                : "unread") as ReadState,
             }
           : map,
       {} as ReadStates
@@ -46,14 +47,13 @@ const BlogPostList: React.FC<{}> = () => {
     );
   }
 
-  // TODO: create loading component
   if (isLoading) {
-    return <>Loading...</>;
+    return <Loading />;
   }
 
   return (
     <div>
-      {blogPosts.slice(offset, offset + PAGE_SIZE).map(blogPost => (
+      {blogPosts.slice(offset, offset + PAGE_SIZE).map((blogPost) => (
         <BlogPostListItem
           key={blogPost.title}
           blogPost={blogPost}

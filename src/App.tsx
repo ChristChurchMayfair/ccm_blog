@@ -41,14 +41,12 @@ const App: React.FC = () => (
         </div>
       </div>
       <main>
-        <div>
-          <Switch>
-            <Route path="/posts/:slug" component={BlogPost}></Route>
-            <Route path="/">
-              <BlogPostList />
-            </Route>
-          </Switch>
-        </div>
+        <Switch>
+          <Route path="/posts/:slug" component={BlogPost}></Route>
+          <Route path="/">
+            <BlogPostList />
+          </Route>
+        </Switch>
       </main>
       <footer></footer>
     </div>
