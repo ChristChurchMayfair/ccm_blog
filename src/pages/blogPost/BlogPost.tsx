@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, ReactElement } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import useFetchBlogPosts from "../../commonComponents/hooks/useFetchBlogPosts";
@@ -7,6 +7,7 @@ import Loading from "../../commonComponents/loading/Loading";
 import "./blogPost.scss";
 import moment from "moment";
 
+/* Sadly the sanity block content to react has no types avaiable */
 const BlockContent = require("@sanity/block-content-to-react");
 
 const BlogPost: React.FC<{}> = () => {
@@ -52,6 +53,20 @@ const BlogPost: React.FC<{}> = () => {
     );
   }
 
+  /* Sadly the sanity block content to react has no types avaiable */
+  type serializerFunction = (mark:any, children: any) => ReactElement;
+
+  const serializeLink:serializerFunction = ({mark, children}) => {
+    return <a href={mark.href} target="_blank" rel="noopener noreferrer">{children}</a>
+  }
+
+  const serialisers = { 
+    hardBreak: false,
+    marks: {
+      link: serializeLink
+    }
+  }
+
   return (
     <>
       {blogPosts.map(({ title, author, text, createdAt }) => (
@@ -62,7 +77,7 @@ const BlogPost: React.FC<{}> = () => {
           <h2 className="blog-post__title">{title}</h2>
           <div className="blog-post__author">Posted by {author}</div>
           <div className="blog-post__text">
-            <BlockContent blocks={text} serializers={{ hardBreak: false }} />
+            <BlockContent blocks={text} serializers={serialisers} />
           </div>
           <div className="blog-post__back-to-posts">
             <Link to={"/"}>&larr; Back to all posts</Link>
