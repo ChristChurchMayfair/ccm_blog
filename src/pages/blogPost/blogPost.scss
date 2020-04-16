@@ -28,7 +28,7 @@
   }
 
   blockquote {
-    background-color: #f2f2f2;
+    background-color: var(--main-background-color);
     margin: 0;
     padding: 1.5rem 1.5rem 1.5rem 4rem;
     border-left: 8px solid;
