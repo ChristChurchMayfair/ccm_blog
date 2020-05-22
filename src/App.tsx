@@ -23,7 +23,7 @@ const App: React.FC = () => (
           <h1>Welcome to the CCM daily blog!</h1>
           <div>
             <p>
-              We’ll be posting weekky, on Fridays, with the aim of building one another up,
+              We’ll be posting weekly, every Friday, with the aim of building one another up,
               spurring one another on and helping one another to live for Jesus
               in this season.
             </p>
