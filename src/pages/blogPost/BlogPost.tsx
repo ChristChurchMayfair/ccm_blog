@@ -1,18 +1,31 @@
 import React, { useLayoutEffect, ReactElement } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 
 import useFetchBlogPosts from "../../commonComponents/hooks/useFetchBlogPosts";
 import Loading from "../../commonComponents/loading/Loading";
 
 import "./blogPost.scss";
 import moment from "moment";
+import useChangeMetaTitle from "../../commonComponents/hooks/useChangeMetaTitle";
+import useChangeMetaDescription from "../../commonComponents/hooks/useChangeMetaDescription";
+import useChangeMetaURL from "../../commonComponents/hooks/useChangeMetaURL";
 
 /* Sadly the sanity block content to react has no types avaiable */
 const BlockContent = require("@sanity/block-content-to-react");
 
 const BlogPost: React.FC<{}> = () => {
   const { slug } = useParams();
+  const { pathname } = useLocation();
   const { blogPosts, isLoading, error } = useFetchBlogPosts({ slug });
+
+  useChangeMetaTitle(blogPosts[0]?.title, true);
+  useChangeMetaDescription(
+    blogPosts[0]?.author
+      ? `A blog post by ${blogPosts[0]?.author}.`
+      : "A post from Christ Church Mayfair's blog.",
+    true
+  );
+  useChangeMetaURL(pathname, true);
 
   useLayoutEffect(() => {
     if (!isLoading && !error && blogPosts.length === 1 && blogPosts[0].slug) {
@@ -54,18 +67,22 @@ const BlogPost: React.FC<{}> = () => {
   }
 
   /* Sadly the sanity block content to react has no types avaiable */
-  type serializerFunction = (mark:any, children: any) => ReactElement;
+  type serializerFunction = (mark: any, children: any) => ReactElement;
 
-  const serializeLink:serializerFunction = ({mark, children}) => {
-    return <a href={mark.href} target="_blank" rel="noopener noreferrer">{children}</a>
-  }
+  const serializeLink: serializerFunction = ({ mark, children }) => {
+    return (
+      <a href={mark.href} target="_blank" rel="noopener noreferrer">
+        {children}
+      </a>
+    );
+  };
 
-  const serialisers = { 
+  const serialisers = {
     hardBreak: false,
     marks: {
-      link: serializeLink
-    }
-  }
+      link: serializeLink,
+    },
+  };
 
   return (
     <>
