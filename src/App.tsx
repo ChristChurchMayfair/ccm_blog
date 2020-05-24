@@ -20,12 +20,12 @@ const App: React.FC = () => (
           </div>
         </header>
         <div className="app__intro-section__copy">
-          <h1>Welcome to the CCM daily blog!</h1>
+          <h1>Welcome to the CCM weekly blog!</h1>
           <div>
             <p>
-              We’ll be posting weekly, every Friday, with the aim of building one another up,
-              spurring one another on and helping one another to live for Jesus
-              in this season.
+              We’ll be posting weekly, every Friday, with the aim of building
+              one another up, spurring one another on and helping one another to
+              live for Jesus in this season.
             </p>
             <p>
               We’ll post articles, blog posts and videos that we’ve found
