@@ -15,7 +15,7 @@
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "moment": "^2.24.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-paginate": "^6.3.2",
